@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Game</title>
+</head>
+<body>
+
+
+    <div
+    id="cardiv"
+    style="position: absolute;top: 51px ; left: -59px ; width: 200px;"
+    
+    >
+    <img src="car.jpeg" alt="">
+    </div>
+
+    <div 
+    style="position: absolute; border:2px solid black; ; 
+    height: 20px;
+    width: 700px;
+    background-color: black;
+    left: 0px;
+    top: 176px;
+    ">
+    </div>
+
+    <br><br><br><br><br><br><br><br><br><br><br>
+    X-AXIS : <input type="text" id="xtext"><br> <br>
+    Y-AXIS : <input type="text" id="ytext">
+    <br><br>
+    <input type="button" value="START" onclick="start()"> 
+    <input type="button" value="STOP" onclick="stop()">
+
+    <script>
+        var distance = 0;
+        var carpos = -59;
+        var started = false;
+        var cartop = 51;
+        var carmovequeues = new Array();
+        var cardownqueue = new Array();
+        function start(){
+            if(started == false){
+                carmovequeues.push(window.setInterval(move,25));
+                started = true;
+            }
+        }
+
+        function move(){
+           var divref = document.getElementById("cardiv");
+           if(carpos == 670)
+           {
+            stop();
+            crash(); 
+           
+           }
+           carpos = carpos + 3;
+           divref.style.left = carpos + "px";
+        }
+
+
+        function stop(){
+            for(var i = 0;i < carmovequeues.length;i++)
+            {
+                window.clearInterval(carmovequeues[i]);
+            }
+            started = false;
+        }
+
+        function down(){
+            var divref = document.getElementById("cardiv");
+            if(cartop < 450)
+            {
+                cartop = cartop + 3;
+                 divref.style.top = cartop + "px";
+            } else{
+                downstop();
+            }
+
+             
+        }
+
+        function crash(){
+            var divref = document.getElementById("cardiv");
+
+            cardownqueue.push(window.setInterval(down,25));
+            
+        }
+        function downstop(){
+            for(var i = 0; i <cardownqueue.length;i++){
+                window.clearInterval(cardownqueue[i]);
+            }
+           
+        }
+
+    </script>
+</body
+</html>

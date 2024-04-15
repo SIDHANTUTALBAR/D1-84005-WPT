@@ -1,0 +1,90 @@
+<html >
+<head>
+<title>Calculator</title>
+<style>
+    table {
+        border-collapse: collapse;
+        margin: 0 auto; /* Centering the table */
+    }
+    td {
+        padding: 5px;
+    }
+</style>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td>Enter Number 1:</td>
+        <td><input type="text" id="num1"></td>
+    </tr>
+    <tr>
+        <td>Enter Number 2:</td>
+        <td><input type="text" id="num2"></td>
+    </tr>
+    <tr>
+        <td>Result:</td>
+        <td><input type="text" id="result" readonly></td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <button onclick="addition()">Addition</button>
+            <button onclick="subtraction()">Subtraction</button>
+            <button onclick="multiplication()">Multiplication</button>
+            <button onclick="division()">Division</button>
+        </td>
+    </tr>
+</table>
+
+<script>
+function isValidNumber(num) {
+    return !isNaN(parseFloat(num)) && isFinite(num);
+}
+
+function addition() {
+    var num1 = document.getElementById("num1").value;
+    var num2 = document.getElementById("num2").value;
+    if (!isValidNumber(num1) || !isValidNumber(num2)) {
+        alert("Please enter valid numbers");
+        return;
+    }
+    document.getElementById("result").value = parseFloat(num1) + parseFloat(num2);
+}
+
+function subtraction() {
+    var num1 = document.getElementById("num1").value;
+    var num2 = document.getElementById("num2").value;
+    if (!isValidNumber(num1) || !isValidNumber(num2)) {
+        alert("Please enter valid numbers");
+        return;
+    }
+    document.getElementById("result").value = parseFloat(num1) - parseFloat(num2);
+}
+
+function multiplication() {
+    var num1 = document.getElementById("num1").value;
+    var num2 = document.getElementById("num2").value;
+    if (!isValidNumber(num1) || !isValidNumber(num2)) {
+        alert("Please enter valid numbers");
+        return;
+    }
+    document.getElementById("result").value = parseFloat(num1) * parseFloat(num2);
+}
+
+function division() {
+    var num1 = document.getElementById("num1").value;
+    var num2 = document.getElementById("num2").value;
+    if (!isValidNumber(num1) || !isValidNumber(num2)) {
+        alert("Please enter valid numbers");
+        return;
+    }
+    if (num2 == 0) {
+        alert("Cannot divide by zero");
+        return;
+    }
+    document.getElementById("result").value = parseFloat(num1) / parseFloat(num2);
+}
+</script>
+
+</body>
+</html>
